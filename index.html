@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Is My TD? — Know how your TD votes on every bill.</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand" onclick="window.location.href='/'" title="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green);">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="goTo('tds')">All TDs</button>
+      <button class="nav-link" onclick="goTo('bills')">Recent Bills</button>
+      <button class="nav-link">How It Works</button>
+      <span class="nav-pill">34th Dáil</span>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="btn btn-ghost btn-sm">Log in</button>
+      <button class="btn btn-primary btn-sm" onclick="goTo('tds')">Find Your TD</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="container">
+      <span class="badge badge-green">
+        <span style="display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;"></span>
+        Live Dáil voting data
+      </span>
+      <h1 class="hero-title">
+        Know how your TD<br>
+        <span>votes on every bill.</span>
+      </h1>
+      <p class="hero-lead">
+        Track every division in the 34th Dáil — with plain-English summaries of legislation, powered by AI. Transparent governance, finally readable.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="goTo('tds')">Find Your TD</button>
+        <button class="btn btn-ghost" onclick="goTo('bills')">See Recent Bills</button>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">160</div>
+          <div class="hero-stat-lbl">Active TDs</div>
+        </div>
+        <div style="width:1px;height:40px;background:var(--border)"></div>
+        <div>
+          <div class="hero-stat-val">43</div>
+          <div class="hero-stat-lbl">Constituencies</div>
+        </div>
+        <div style="width:1px;height:40px;background:var(--border)"></div>
+        <div>
+          <div class="hero-stat-val">1,240+</div>
+          <div class="hero-stat-lbl">Votes recorded</div>
+        </div>
+        <div style="width:1px;height:40px;background:var(--border)"></div>
+        <div>
+          <div class="hero-stat-val">34th</div>
+          <div class="hero-stat-lbl">Dáil session</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

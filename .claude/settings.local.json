@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(curl -s \"https://api.oireachtas.ie/v1/members?limit=5\")"
+    ]
+  }
+}

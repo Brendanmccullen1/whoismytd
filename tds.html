@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All TDs — Who Is My TD?</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand" onclick="window.location.href='/'" title="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green);">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="goTo('tds')">All TDs</button>
+      <button class="nav-link" onclick="goTo('bills')">Recent Bills</button>
+      <button class="nav-link">How It Works</button>
+      <span class="nav-pill">34th Dáil</span>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="btn btn-ghost btn-sm">Log in</button>
+      <button class="btn btn-primary btn-sm" onclick="goTo('tds')">Find Your TD</button>
+    </div>
+  </nav>
+
+  <div class="listing-header">
+    <div class="container">
+      <h2 class="h2" style="margin-bottom: var(--space-4);">All TDs</h2>
+      <div class="listing-search">
+        <input
+          type="text"
+          class="input"
+          id="searchInput"
+          placeholder="Search by name or constituency..."
+        >
+      </div>
+    </div>
+  </div>
+
+  <div id="listing" class="container">
+    <div class="loading">
+      <p>Loading TDs...</p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/tds.js"></script>
+</body>
+</html>

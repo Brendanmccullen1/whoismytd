@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent Bills — Who Is My TD?</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand" onclick="window.location.href='/'" title="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--green);">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="goTo('tds')">All TDs</button>
+      <button class="nav-link active" onclick="goTo('bills')">Recent Bills</button>
+      <button class="nav-link">How It Works</button>
+      <span class="nav-pill">34th Dáil</span>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="btn btn-ghost btn-sm">Log in</button>
+      <button class="btn btn-primary btn-sm" onclick="goTo('tds')">Find Your TD</button>
+    </div>
+  </nav>
+
+  <div class="listing-header">
+    <div class="container">
+      <h2 class="h2">Recent Bills</h2>
+    </div>
+  </div>
+
+  <div id="listing" class="container" style="padding: var(--space-6);">
+    <div class="loading">
+      <p>Loading bills...</p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    async function loadBills() {
+      const listing = document.getElementById('listing');
+      const data = await getBills();
+
+      if (data.error) {
+        listing.innerHTML = `<div class="error"><p>Error: ${data.error}</p></div>`;
+        return;
+      }
+
+      const bills = data.bills || [];
+      if (bills.length === 0) {
+        listing.innerHTML = '<div class="empty"><p>No bills found.</p></div>';
+        return;
+      }
+
+      let html = '<div class="td-grid">';
+      for (const bill of bills) {
+        const title = bill.title || bill.bill_name || 'Bill';
+        const billId = bill.bill_id || bill.id;
+        html += `
+          <div class="card" style="cursor: pointer;" onclick="window.location.href='/bill.html?id=${encodeURIComponent(billId)}'">
+            <h4 class="h4" style="margin-bottom: var(--space-2);">${title}</h4>
+            <p class="caption">${new Date(bill.date || Date.now()).toLocaleDateString()}</p>
+          </div>
+        `;
+      }
+      html += '</div>';
+      listing.innerHTML = html;
+    }
+
+    loadBills();
+  </script>
+</body>
+</html>
