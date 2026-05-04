@@ -48,17 +48,17 @@
       </div>
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-val">160</div>
+          <div class="hero-stat-val" id="stat-members">—</div>
           <div class="hero-stat-lbl">Active TDs</div>
         </div>
         <div style="width:1px;height:40px;background:var(--border)"></div>
         <div>
-          <div class="hero-stat-val">43</div>
+          <div class="hero-stat-val" id="stat-constituencies">—</div>
           <div class="hero-stat-lbl">Constituencies</div>
         </div>
         <div style="width:1px;height:40px;background:var(--border)"></div>
         <div>
-          <div class="hero-stat-val">1,240+</div>
+          <div class="hero-stat-val" id="stat-votes">—</div>
           <div class="hero-stat-lbl">Votes recorded</div>
         </div>
         <div style="width:1px;height:40px;background:var(--border)"></div>
@@ -79,5 +79,16 @@
 
   <script src="/js/api.js"></script>
   <script src="/js/main.js"></script>
+  <script>
+    async function loadStats() {
+      const data = await fetchAPI('/stats');
+      if (data.error) return;
+      const fmt = n => n >= 1000 ? (n / 1000).toFixed(1) + 'k+' : n.toString();
+      document.getElementById('stat-members').textContent = data.active_members ?? '—';
+      document.getElementById('stat-constituencies').textContent = data.constituencies ?? '—';
+      document.getElementById('stat-votes').textContent = data.votes > 0 ? fmt(data.votes) : '—';
+    }
+    loadStats();
+  </script>
 </body>
 </html>
