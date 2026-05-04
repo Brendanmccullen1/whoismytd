@@ -1,0 +1,13 @@
+.env
+.env.local
+.env.*.local
+venv/
+env/
+*.pyc
+__pycache__/
+.DS_Store
+node_modules/
+.vscode/
+*.log
+.pytest_cache/
+.claude/
